@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Лиана — Қыз Ұзату</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Cormorant Garamond',Georgia,serif;
+      background:#fff;
+      color:#2c1a1a;
+      overflow-x:hidden;
+      max-width:480px;
+      margin:0 auto;
+    }
+
+    /* ══════════════════════════════════
+       КАЗАХСКИЙ ОРНАМЕНТ — точная копия
+       ══════════════════════════════════ */
+    .kz-band{
+      width:100%;
+      height:60px;
+      background:#8b1a1a;
+      /* SVG-орнамент: завитки и ромбы, как в образце */
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3C!-- top and bottom thin lines --%3E%3Crect x='0' y='4' width='120' height='1.2' fill='%23d4808080'/%3E%3Crect x='0' y='54.8' width='120' height='1.2' fill='%23d4808080'/%3E%3C!-- main central flower/roundel unit, repeating every 120px --%3E%3C!-- center circle --%3E%3Ccircle cx='60' cy='30' r='7' stroke='%23f5d0c0' stroke-width='1.5' fill='none'/%3E%3Ccircle cx='60' cy='30' r='3.5' fill='%23f5d0c0'/%3E%3C!-- 8 petals/arms outward --%3E%3Cpath d='M60 23 C57 18 55 14 60 10 C65 14 63 18 60 23Z' fill='%23f5d0c0' opacity='0.85'/%3E%3Cpath d='M60 37 C63 42 65 46 60 50 C55 46 57 42 60 37Z' fill='%23f5d0c0' opacity='0.85'/%3E%3Cpath d='M53 30 C48 27 44 25 40 30 C44 35 48 33 53 30Z' fill='%23f5d0c0' opacity='0.85'/%3E%3Cpath d='M67 30 C72 33 76 35 80 30 C76 25 72 27 67 30Z' fill='%23f5d0c0' opacity='0.85'/%3E%3C!-- diagonal petals --%3E%3Cpath d='M55 25 C51 21 48 17 52 13 C56 17 55 21 55 25Z' fill='%23f5d0c0' opacity='0.65'/%3E%3Cpath d='M65 25 C69 21 72 17 68 13 C64 17 65 21 65 25Z' fill='%23f5d0c0' opacity='0.65'/%3E%3Cpath d='M55 35 C51 39 48 43 52 47 C56 43 55 39 55 35Z' fill='%23f5d0c0' opacity='0.65'/%3E%3Cpath d='M65 35 C69 39 72 43 68 47 C64 43 65 39 65 35Z' fill='%23f5d0c0' opacity='0.65'/%3E%3C!-- left side scrollwork --%3E%3Cpath d='M40 30 C32 25 22 26 18 30 C22 34 32 35 40 30Z' fill='none' stroke='%23f5d0c0' stroke-width='1.3'/%3E%3Cpath d='M18 30 C12 24 6 26 4 30 C6 34 12 36 18 30Z' fill='none' stroke='%23f5d0c0' stroke-width='1'/%3E%3Cpath d='M18 30 C16 23 18 16 22 14' stroke='%23f5d0c0' stroke-width='1' fill='none' stroke-linecap='round'/%3E%3Cpath d='M18 30 C16 37 18 44 22 46' stroke='%23f5d0c0' stroke-width='1' fill='none' stroke-linecap='round'/%3E%3C!-- right side scrollwork (mirror) --%3E%3Cpath d='M80 30 C88 25 98 26 102 30 C98 34 88 35 80 30Z' fill='none' stroke='%23f5d0c0' stroke-width='1.3'/%3E%3Cpath d='M102 30 C108 24 114 26 116 30 C114 34 108 36 102 30Z' fill='none' stroke='%23f5d0c0' stroke-width='1'/%3E%3Cpath d='M102 30 C104 23 102 16 98 14' stroke='%23f5d0c0' stroke-width='1' fill='none' stroke-linecap='round'/%3E%3Cpath d='M102 30 C104 37 102 44 98 46' stroke='%23f5d0c0' stroke-width='1' fill='none' stroke-linecap='round'/%3E%3C!-- small diamonds at key points --%3E%3Cpath d='M0 30 L3 27 L6 30 L3 33Z' fill='%23f5d0c0'/%3E%3Cpath d='M114 30 L117 27 L120 30 L117 33Z' fill='%23f5d0c0'/%3E%3C/svg%3E");
+      background-repeat: repeat-x;
+      background-size: 120px 60px;
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════════
+       HERO
+       ══════════════════════════════════ */
+    #hero{position:relative;background:#fff;overflow:hidden;}
+    .hero-photo-wrap{position:relative;width:100%;}
+    .hero-photo{
+      width:100%;
+      height:70vh;
+      object-fit:cover;
+      object-position:center top;
+      display:block;
+    }
+    /* плавный переход фото → белый */
+    .hero-photo-wrap::after{
+      content:'';
+      position:absolute;bottom:0;left:0;right:0;
+      height:50%;
+      background:linear-gradient(to bottom,transparent,#fff);
+    }
+
+    /* мандалы по бокам */
+    .mandala-l,.mandala-r{
+      position:absolute;
+      width:130px;height:130px;
+      bottom:120px;
+      opacity:0.18;
+      pointer-events:none;
+    }
+    .mandala-l{left:-30px;}
+    .mandala-r{right:-30px;}
+    @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+    .mandala-l svg{animation:spin 22s linear infinite;}
+    .mandala-r svg{animation:spin 22s linear infinite reverse;}
+
+    /* текст hero */
+    .hero-text{
+      position:relative;
+      text-align:center;
+      padding:0 30px 44px;
+      margin-top:-10px;
+      z-index:2;
+    }
+    .hero-name{
+      font-family:'Great Vibes',cursive;
+      font-size:clamp(56px,14vw,80px);
+      color:#6b1212;
+      line-height:1.1;
+      letter-spacing:0.02em;
+    }
+    .hero-sub{
+      font-family:'Cinzel',serif;
+      font-size:clamp(16px,4.2vw,22px);
+      color:#6b1212;
+      letter-spacing:0.3em;
+      margin-top:4px;
+      font-weight:500;
+    }
+
+    /* кнопка музыки */
+    .mute-wrap{display:flex;justify-content:center;margin-top:22px;}
+    .mute-btn{position:relative;width:72px;height:72px;cursor:pointer;flex-shrink:0;}
+    .mute-ring{position:absolute;top:0;left:0;width:100%;height:100%;animation:spin 9s linear infinite;}
+    .mute-ico{
+      position:absolute;top:50%;left:50%;
+      transform:translate(-50%,-50%);
+      width:32px;height:32px;
+      border:1.5px solid #6b1212;
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+    }
+
+    /* ══════════════════════════════════
+       INVITATION
+       ══════════════════════════════════ */
+    #invitation{
+      padding:60px 32px 50px;
+      text-align:center;
+      position:relative;
+      background:#fff;
+    }
+    .pink-blob{
+      position:absolute;
+      width:180px;height:220px;
+      background:radial-gradient(ellipse,rgba(210,140,140,0.22) 0%,transparent 70%);
+      left:-30px;top:60px;
+      border-radius:60% 40% 55% 50%;
+      pointer-events:none;
+    }
+    .inv-greeting{
+      font-family:'Cinzel',serif;
+      font-size:clamp(11px,3vw,14px);
+      letter-spacing:0.16em;
+      line-height:2.2;
+      color:#2c1a1a;
+      font-weight:400;
+    }
+    .inv-body{
+      margin-top:30px;
+      font-family:'Cinzel',serif;
+      font-size:clamp(11px,3vw,13px);
+      letter-spacing:0.13em;
+      line-height:2.3;
+      color:#2c1a1a;
+    }
+    .inv-name-script{
+      font-family:'Great Vibes',cursive;
+      font-size:clamp(48px,12vw,68px);
+      color:#6b1212;
+      display:block;
+      margin:4px 0;
+      line-height:1.2;
+    }
+
+    /* ══════════════════════════════════
+       DATE
+       ══════════════════════════════════ */
+    #date-section{
+      padding:44px 28px 52px;
+      text-align:center;
+      background:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+    .date-pink-blob{
+      position:absolute;
+      width:200px;height:200px;
+      background:radial-gradient(ellipse,rgba(210,140,140,0.20) 0%,transparent 70%);
+      right:-30px;top:60px;
+      border-radius:50%;
+      pointer-events:none;
+    }
+    .sec-title{
+      font-family:'Great Vibes',cursive;
+      font-size:clamp(34px,8.5vw,50px);
+      color:#6b1212;
+      margin-bottom:16px;
+    }
+    .date-line{
+      font-family:'Cinzel',serif;
+      font-size:clamp(18px,4.8vw,26px);
+      letter-spacing:0.14em;
+      color:#2c1a1a;
+      margin-bottom:26px;
+    }
+    /* Календарь — стиль как в видео */
+    .cal-wrap{
+      display:inline-block;
+      width:100%;
+      max-width:360px;
+      text-align:left;
+    }
+    .cal-hd{
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      font-family:'Cinzel',serif;
+      font-size:clamp(16px,4.5vw,20px);
+      letter-spacing:0.15em;
+      color:#2c1a1a;
+      margin-bottom:10px;
+    }
+    .cal-hd-month{font-weight:500;color:#2c1a1a;}
+    .cal-hd-year{font-weight:400;color:#2c1a1a;}
+    .cal-sep{
+      width:100%;
+      height:1px;
+      background:rgba(107,18,18,0.25);
+      margin-bottom:8px;
+    }
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:0px;}
+    .dn{
+      font-family:'Cinzel',serif;
+      font-size:clamp(9px,2.4vw,11px);
+      color:#aaa;
+      text-align:center;
+      padding:6px 0 8px;
+      letter-spacing:0.03em;
+    }
+    .dc{
+      font-family:'Cinzel',serif;
+      font-size:clamp(15px,4vw,18px);
+      text-align:center;
+      padding:7px 2px;
+      color:#2c1a1a;
+      line-height:1.2;
+    }
+    /* Выделенная дата — число + сердечко снизу */
+    .dc.hl{
+      color:#8b1a1a;
+      font-weight:600;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:1px;
+    }
+    .dc.hl .heart-ico{
+      font-size:clamp(12px,3.2vw,15px);
+      color:#8b1a1a;
+      line-height:1;
+    }
+
+    .time-line{
+      font-family:'Cinzel',serif;
+      font-size:clamp(13px,3.8vw,17px);
+      color:#6b1212;
+      letter-spacing:0.28em;
+      margin-top:28px;
+    }
+    .jewelry-img{
+      width:60%;max-width:230px;
+      border-radius:6px;
+      margin-top:34px;
+      box-shadow:0 6px 28px rgba(107,18,18,0.15);
+    }
+
+    /* ══════════════════════════════════
+       HOST — между двумя полосами орнамента
+       ══════════════════════════════════ */
+    #host-section{
+      background:#fff;
+      text-align:center;
+      padding:28px 28px 28px;
+    }
+    .host-title{
+      font-family:'Great Vibes',cursive;
+      font-size:clamp(30px,7.5vw,44px);
+      color:#6b1212;
+      margin-bottom:10px;
+    }
+    .host-name{
+      font-family:'Cinzel',serif;
+      font-size:clamp(13px,3.5vw,17px);
+      letter-spacing:0.24em;
+      color:#2c1a1a;
+    }
+
+    /* ══════════════════════════════════
+       COUNTDOWN
+       ══════════════════════════════════ */
+    #countdown-section{position:relative;overflow:hidden;}
+    .cdb-img{
+      width:100%;height:280px;
+      object-fit:cover;
+      object-position:center 30%;
+      filter:brightness(0.55);
+      display:block;
+    }
+    .cdb-ov{
+      position:absolute;bottom:0;left:0;right:0;
+      padding:30px 20px 32px;
+      background:linear-gradient(to top,rgba(10,2,2,0.93) 0%,rgba(10,2,2,0.55) 55%,transparent 100%);
+    }
+    .cd-title{
+      font-family:'Cinzel',serif;
+      font-size:clamp(10px,2.8vw,14px);
+      color:rgba(255,255,255,0.82);
+      letter-spacing:0.3em;
+      margin-bottom:16px;
+      text-align:center;
+    }
+    .cd-nums{display:flex;justify-content:center;gap:24px;}
+    .cd-unit{display:flex;flex-direction:column;align-items:center;}
+    .cd-n{
+      font-family:'Cinzel',serif;
+      font-size:clamp(36px,9.5vw,56px);
+      font-weight:600;
+      color:#fff;
+      line-height:1;
+    }
+    .cd-l{
+      font-family:'Cormorant Garamond',serif;
+      font-size:11px;
+      color:rgba(255,255,255,0.62);
+      letter-spacing:0.1em;
+      margin-top:5px;
+    }
+
+    /* ══════════════════════════════════
+       RSVP
+       ══════════════════════════════════ */
+    #rsvp-section{background:#fff;padding:50px 30px 60px;}
+    .rsvp-hd{
+      font-family:'Cinzel',serif;
+      font-size:clamp(12px,3.2vw,14px);
+      color:#6b1212;
+      letter-spacing:0.22em;
+      text-align:center;
+      margin-bottom:36px;
+      line-height:2.1;
+    }
+    .fg{margin-bottom:26px;}
+    .fl{
+      font-family:'Cormorant Garamond',serif;
+      font-size:15px;color:#5a3535;
+      display:block;margin-bottom:7px;
+    }
+    .fi,.fta{
+      width:100%;border:none;
+      border-bottom:1.5px solid #c8a8a8;
+      padding:8px 0;
+      font-family:'Cormorant Garamond',serif;
+      font-size:18px;color:#2c1a1a;
+      background:transparent;outline:none;
+      transition:border-color .3s;
+    }
+    .fi:focus,.fta:focus{border-bottom-color:#6b1212;}
+    .fta{resize:none;min-height:55px;}
+    .rl{
+      font-family:'Cormorant Garamond',serif;
+      font-size:14px;color:#aaa;
+      display:block;margin-bottom:14px;
+    }
+    .ro-wrap{display:flex;flex-direction:column;gap:14px;}
+    .ro{display:flex;align-items:center;gap:13px;cursor:pointer;}
+    .ro input[type=radio]{
+      appearance:none;
+      width:20px;height:20px;
+      border:1.5px solid #c8a8a8;
+      border-radius:50%;
+      flex-shrink:0;cursor:pointer;
+      position:relative;transition:border-color .3s;
+    }
+    .ro input[type=radio]:checked{border-color:#6b1212;}
+    .ro input[type=radio]:checked::after{
+      content:'';position:absolute;
+      top:50%;left:50%;
+      transform:translate(-50%,-50%);
+      width:10px;height:10px;
+      background:#6b1212;border-radius:50%;
+    }
+    .ro span{
+      font-family:'Cinzel',serif;
+      font-size:clamp(11px,2.8vw,13px);
+      color:#2c1a1a;letter-spacing:0.1em;
+    }
+    .sbtn{
+      width:100%;padding:17px;
+      background:#8b1a1a;color:#fff;
+      border:none;border-radius:50px;
+      font-family:'Cinzel',serif;
+      font-size:15px;letter-spacing:0.24em;
+      cursor:pointer;margin-top:10px;
+      transition:background .3s,transform .2s,box-shadow .3s;
+      box-shadow:0 4px 22px rgba(139,26,26,0.32);
+    }
+    .sbtn:hover{background:#6b1212;transform:translateY(-2px);}
+    .rsvp-close{
+      font-family:'Great Vibes',cursive;
+      font-size:clamp(28px,7vw,40px);
+      color:#6b1212;
+      text-align:center;
+      margin-top:44px;
+      line-height:1.6;
+    }
+
+    /* ══════════════════════════════════
+       THANK YOU
+       ══════════════════════════════════ */
+    #thankyou{
+      display:none;
+      position:fixed;inset:0;
+      background:rgba(255,255,255,0.97);
+      z-index:9999;
+      flex-direction:column;
+      align-items:center;justify-content:center;
+      text-align:center;padding:40px;
+    }
+    #thankyou.show{display:flex;}
+    .ty-heart{font-size:72px;color:#8b1a1a;margin-bottom:18px;animation:hb 1.5s ease-in-out infinite;}
+    @keyframes hb{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+    .ty-who{font-family:'Cinzel',serif;font-size:clamp(14px,4vw,20px);color:#6b1212;letter-spacing:0.15em;margin-bottom:12px;}
+    .ty-txt{font-family:'Great Vibes',cursive;font-size:clamp(34px,9vw,52px);color:#6b1212;line-height:1.5;}
+    .ty-hint{margin-top:26px;font-family:'Cormorant Garamond',serif;font-size:13px;color:#bbb;letter-spacing:0.1em;}
+
+    /* Music Button */
+    .music-btn{
+      position:fixed;top:20px;right:20px;width:38px;height:38px;
+      border-radius:50%;background:rgba(255,255,255,0.6);
+      border:1px solid rgba(139,26,26,0.2);
+      color:#8b1a1a;display:flex;align-items:center;justify-content:center;
+      cursor:pointer;z-index:999;box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      transition:all .3s ease;backdrop-filter:blur(5px);
+    }
+    .music-btn svg{width:20px;height:20px;fill:currentColor;}
+    .music-btn.playing svg { animation: pulse 2s infinite; }
+    .music-btn .off-path { display: none; }
+    .music-btn:not(.playing) .on-path { display: none; }
+    .music-btn:not(.playing) .off-path { display: block; }
+    @keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.1);} }
+  </style>
+</head>
+<body>
+
+<!-- Аудио -->
+<audio id="bg-music" loop autoplay>
+  <!-- Красивая романтическая мелодия (Pixabay, без авторских прав) -->
+  <source src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+</audio>
+<button id="music-btn" class="music-btn playing" title="Остановить/Включить музыку">
+  <svg viewBox="0 0 24 24">
+    <!-- Иконка включенного звука -->
+    <path class="on-path" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+    <!-- Иконка выключенного звука -->
+    <path class="off-path" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+  </svg>
+</button>
+<!-- ░░ ОРНАМЕНТ СВЕРХУ ░░ -->
+<div class="kz-band"></div>
+
+<!-- ░░ HERO ░░ -->
+<section id="hero">
+  <div class="hero-photo-wrap">
+    <img class="hero-photo" src="bride.png" alt="Лиана"/>
+  </div>
+
+  <!-- Мандала левая -->
+  <div class="mandala-l">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="56" stroke="#8b1a1a" stroke-width="1.5" fill="none"/>
+      <circle cx="60" cy="60" r="46" stroke="#8b1a1a" stroke-width="1.2" fill="none"/>
+      <circle cx="60" cy="60" r="36" stroke="#8b1a1a" stroke-width="1" fill="none"/>
+      <circle cx="60" cy="60" r="26" stroke="#8b1a1a" stroke-width="0.8" fill="none"/>
+      <circle cx="60" cy="60" r="16" stroke="#8b1a1a" stroke-width="0.6" fill="none"/>
+      <circle cx="60" cy="60" r="6" fill="#8b1a1a" opacity="0.5"/>
+      <!-- лепестки -->
+      <ellipse cx="60" cy="38" rx="4" ry="9" fill="#8b1a1a" opacity="0.35"/>
+      <ellipse cx="60" cy="82" rx="4" ry="9" fill="#8b1a1a" opacity="0.35"/>
+      <ellipse cx="38" cy="60" rx="9" ry="4" fill="#8b1a1a" opacity="0.35"/>
+      <ellipse cx="82" cy="60" rx="9" ry="4" fill="#8b1a1a" opacity="0.35"/>
+      <!-- диагональные лепестки -->
+      <ellipse cx="46" cy="46" rx="4" ry="9" transform="rotate(45 46 46)" fill="#8b1a1a" opacity="0.25"/>
+      <ellipse cx="74" cy="46" rx="4" ry="9" transform="rotate(-45 74 46)" fill="#8b1a1a" opacity="0.25"/>
+      <ellipse cx="46" cy="74" rx="4" ry="9" transform="rotate(-45 46 74)" fill="#8b1a1a" opacity="0.25"/>
+      <ellipse cx="74" cy="74" rx="4" ry="9" transform="rotate(45 74 74)" fill="#8b1a1a" opacity="0.25"/>
+      <!-- точки на кольцах -->
+      <circle cx="60" cy="4" r="2.5" fill="#8b1a1a" opacity="0.4"/>
+      <circle cx="60" cy="116" r="2.5" fill="#8b1a1a" opacity="0.4"/>
+      <circle cx="4" cy="60" r="2.5" fill="#8b1a1a" opacity="0.4"/>
+      <circle cx="116" cy="60" r="2.5" fill="#8b1a1a" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <!-- Мандала правая -->
+  <div class="mandala-r">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="56" stroke="#8b1a1a" stroke-width="1.5" fill="none"/>
+      <circle cx="60" cy="60" r="46" stroke="#8b1a1a" stroke-width="1.2" fill="none"/>
+      <circle cx="60" cy="60" r="36" stroke="#8b1a1a" stroke-width="1" fill="none"/>
+      <circle cx="60" cy="60" r="26" stroke="#8b1a1a" stroke-width="0.8" fill="none"/>
+      <circle cx="60" cy="60" r="16" stroke="#8b1a1a" stroke-width="0.6" fill="none"/>
+      <circle cx="60" cy="60" r="6" fill="#8b1a1a" opacity="0.5"/>
+      <ellipse cx="60" cy="38" rx="4" ry="9" fill="#8b1a1a" opacity="0.35"/>
+      <ellipse cx="60" cy="82" rx="4" ry="9" fill="#8b1a1a" opacity="0.35"/>
+      <ellipse cx="38" cy="60" rx="9" ry="4" fill="#8b1a1a" opacity="0.35"/>
+      <ellipse cx="82" cy="60" rx="9" ry="4" fill="#8b1a1a" opacity="0.35"/>
+      <ellipse cx="46" cy="46" rx="4" ry="9" transform="rotate(45 46 46)" fill="#8b1a1a" opacity="0.25"/>
+      <ellipse cx="74" cy="46" rx="4" ry="9" transform="rotate(-45 74 46)" fill="#8b1a1a" opacity="0.25"/>
+      <ellipse cx="46" cy="74" rx="4" ry="9" transform="rotate(-45 46 74)" fill="#8b1a1a" opacity="0.25"/>
+      <ellipse cx="74" cy="74" rx="4" ry="9" transform="rotate(45 74 74)" fill="#8b1a1a" opacity="0.25"/>
+      <circle cx="60" cy="4" r="2.5" fill="#8b1a1a" opacity="0.4"/>
+      <circle cx="60" cy="116" r="2.5" fill="#8b1a1a" opacity="0.4"/>
+      <circle cx="4" cy="60" r="2.5" fill="#8b1a1a" opacity="0.4"/>
+      <circle cx="116" cy="60" r="2.5" fill="#8b1a1a" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <div class="hero-text">
+    <div class="hero-name">Лиана</div>
+    <div class="hero-sub">КЫЗ ҰЗАТУ</div>
+    <div class="mute-wrap">
+      <div class="mute-btn" id="muteBtn" onclick="toggleMute()">
+        <svg class="mute-ring" viewBox="0 0 72 72">
+          <defs><path id="cr" d="M36,36 m-26,0 a26,26 0 1,1 52,0 a26,26 0 1,1 -52,0"/></defs>
+          <text font-size="6" fill="#6b1212" font-family="Cormorant Garamond,serif" letter-spacing="3">
+            <textPath href="#cr">музыка / пауза / музыка / пауза /</textPath>
+          </text>
+        </svg>
+        <div class="mute-ico">
+          <svg id="muteIcon" viewBox="0 0 24 24" width="16" height="16" fill="none"
+               stroke="#6b1212" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="1" y1="1" x2="23" y2="23"/>
+            <path d="M9 9v3a3 3 0 0 0 5.12 2.12"/>
+            <path d="M15 9.34V4a3 3 0 0 0-5.94-.6"/>
+            <path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ ПОЛОСА ПОСЛЕ HERO ░░ -->
+<div class="kz-band"></div>
+
+<!-- ░░ ПРИГЛАШЕНИЕ ░░ -->
+<section id="invitation" class="fu">
+  <div class="pink-blob"></div>
+  <p class="inv-greeting">
+    УВАЖАЕМЫЕ<br/>
+    РОДСТВЕННИКИ И БЛИЗКИЕ,<br/>
+    СВАТЫ, ДОРОГИЕ ДРУЗЬЯ,<br/>
+    СОСЕДИ И КОЛЛЕГИ!
+  </p>
+  <div class="inv-body">
+    <p>ПРИГЛАШАЕМ ВАС СТАТЬ</p>
+    <p>ПОЧЁТНЫМ ГОСТЕМ</p>
+    <p>НА ТОРЖЕСТВЕ ПРОВОДОВ</p>
+    <p>НАШЕЙ ДОРОГОЙ ДОЧЕРИ</p>
+    <span class="inv-name-script">Лианы</span>
+    <p>И РАЗДЕЛИТЬ РАДОСТЬ</p>
+    <p>ЭТОГО ОСОБОГО ДНЯ!</p>
+  </div>
+</section>
+
+<!-- ░░ ПОЛОСА ПОСЛЕ INVITATION ░░ -->
+<div class="kz-band fu"></div>
+
+<!-- ░░ ДАТА ░░ -->
+<section id="date-section" class="fu">
+  <div class="date-pink-blob"></div>
+  <div class="sec-title">Торжество:</div>
+  <div class="date-line">15.08.2026 ГОД</div>
+  <div class="cal-wrap">
+    <div class="cal-hd">
+      <span class="cal-hd-month">АВГУСТ</span>
+      <span class="cal-hd-year">2026</span>
+    </div>
+    <div class="cal-sep"></div>
+    <div class="cal-grid">
+      <!-- дни недели -->
+      <div class="dn">ПН</div><div class="dn">ВТ</div><div class="dn">СР</div>
+      <div class="dn">ЧТ</div><div class="dn">ПТ</div><div class="dn">СБ</div><div class="dn">ВС</div>
+      <!-- 1 августа 2026 = суббота, смещение 5 -->
+      <div class="dc"></div><div class="dc"></div><div class="dc"></div>
+      <div class="dc"></div><div class="dc"></div>
+      <div class="dc">1</div><div class="dc">2</div>
+      <div class="dc">3</div><div class="dc">4</div><div class="dc">5</div>
+      <div class="dc">6</div><div class="dc">7</div><div class="dc">8</div><div class="dc">9</div>
+      <div class="dc">10</div><div class="dc">11</div><div class="dc">12</div>
+      <div class="dc">13</div><div class="dc">14</div>
+      <!-- 15 — выделено: число + сердечко снизу -->
+      <div class="dc hl">
+        <span>15</span>
+        <span class="heart-ico">♥</span>
+      </div>
+      <div class="dc">16</div>
+      <div class="dc">17</div><div class="dc">18</div><div class="dc">19</div>
+      <div class="dc">20</div><div class="dc">21</div><div class="dc">22</div><div class="dc">23</div>
+      <div class="dc">24</div><div class="dc">25</div><div class="dc">26</div>
+      <div class="dc">27</div><div class="dc">28</div><div class="dc">29</div><div class="dc">30</div>
+      <div class="dc">31</div>
+    </div>
+  </div>
+  <div class="time-line">В 16:00</div>
+  <img src="jewelry.png" alt="Украшения" class="jewelry-img"/>
+</section>
+
+
+<div class="kz-band fu"></div>
+
+
+<!-- ░░ ОБРАТНЫЙ ОТСЧЁТ ░░ -->
+<section id="countdown-section" class="fu">
+  <div style="position:relative">
+    <img class="cdb-img" src="bride.png" alt=""/>
+    <div class="cdb-ov">
+      <div class="cd-title">ДО ТОРЖЕСТВА ОСТАЛОСЬ:</div>
+      <div class="cd-nums">
+        <div class="cd-unit"><div class="cd-n" id="cdays">00</div><div class="cd-l">Дней</div></div>
+        <div class="cd-unit"><div class="cd-n" id="chours">00</div><div class="cd-l">Часов</div></div>
+        <div class="cd-unit"><div class="cd-n" id="cmins">00</div><div class="cd-l">Минут</div></div>
+        <div class="cd-unit"><div class="cd-n" id="csecs">00</div><div class="cd-l">Секунд</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ RSVP ░░ -->
+<section id="rsvp-section" class="fu">
+  <div class="rsvp-hd">ПРОСИМ ПОДТВЕРДИТЬ<br/>ВАШЕ УЧАСТИЕ В ТОРЖЕСТВЕ:</div>
+  <form id="rsvpForm" onsubmit="doRSVP(event)">
+    <div class="fg">
+      <label class="fl" for="gn">Фамилия Имя:</label>
+      <input class="fi" type="text" id="gn" required/>
+    </div>
+    <div class="fg">
+      <span class="rl">Придёте ли вы?</span>
+      <div class="ro-wrap">
+        <label class="ro"><input type="radio" name="att" value="Приду" required/><span>ПРИДУ</span></label>
+        <label class="ro"><input type="radio" name="att" value="Не смогу"/><span>НЕ СМОГУ</span></label>
+        <label class="ro"><input type="radio" name="att" value="Приду с супругой(-м)"/><span>ПРИДУ С СУПРУГОЙ(-М)</span></label>
+      </div>
+    </div>
+    <div class="fg">
+      <label class="fl" for="wsh">Пожелания:</label>
+      <textarea class="fta" id="wsh" rows="2"></textarea>
+    </div>
+    <button type="submit" class="sbtn">ОТПРАВИТЬ</button>
+  </form>
+  <div class="rsvp-close">Приходите,<br/>будьте почётными<br/>гостями нашего торжества!</div>
+</section>
+
+<!-- ░░ ОРНАМЕНТ СНИЗУ ░░ -->
+<div class="kz-band"></div>
+
+<!-- THANK YOU -->
+<div id="thankyou">
+  <div class="ty-heart">♥</div>
+  <div class="ty-who" id="tyWho"></div>
+  <div class="ty-txt">Спасибо!<br/>Ждём вас<br/>с радостью!</div>
+  <div class="ty-hint">Нажмите, чтобы закрыть</div>
+</div>
+
+<audio id="bgAudio" loop></audio>
+
+<script>
+/* Обратный отсчёт */
+const evDate = new Date("2026-08-15T16:00:00");
+function tick(){
+  const diff = evDate - new Date();
+  if(diff <= 0) return;
+  const p = s => String(Math.floor(s)).padStart(2,"0");
+  document.getElementById("cdays").textContent  = p(diff / 864e5);
+  document.getElementById("chours").textContent = p((diff % 864e5) / 36e5);
+  document.getElementById("cmins").textContent  = p((diff % 36e5) / 6e4);
+  document.getElementById("csecs").textContent  = p((diff % 6e4) / 1e3);
+}
+tick(); setInterval(tick, 1000);
+
+/* Музыка */
+let playing = false;
+const audio = document.getElementById("bgAudio");
+const mi = document.getElementById("muteIcon");
+const playSVG = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>`;
+const muteSVG = `<line x1="1" y1="1" x2="23" y2="23"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12"/><path d="M15 9.34V4a3 3 0 0 0-5.94-.6"/><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>`;
+function toggleMute(){
+  if(!audio.src || audio.src === location.href) return;
+  if(playing){ audio.pause(); mi.innerHTML = muteSVG; playing = false; }
+  else { audio.play().catch(()=>{}); mi.innerHTML = playSVG; playing = true; }
+}
+
+/* Scroll fade */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("vis"); });
+}, { threshold: 0.08 });
+document.querySelectorAll(".fu").forEach(el => io.observe(el));
+
+/* ═══════════════════════════════════════════════
+   Настройки JSONBin.io для базы данных
+   ═══════════════════════════════════════════════ */
+const BIN_ID = "6a4511f4da38895dfe1bf656";
+const MASTER_KEY = "$2a$10$1kCUWvxKVwqyiwrGBHokaeg0K8p.29e/pbbb8zAVCQlJXRrLklwfu";
+
+/* RSVP */
+async function doRSVP(e){
+  e.preventDefault();
+  const name = document.getElementById("gn").value.trim();
+  const att  = document.querySelector('input[name="att"]:checked')?.value || "";
+  const wish = document.getElementById("wsh").value.trim();
+  const newGuest = { name, att, wish, time: new Date().toLocaleString("ru-RU") };
+
+  /* Сохраняем в JSONBin */
+  try {
+    const getRes = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+      headers: { "X-Master-Key": MASTER_KEY }
+    });
+    const data = await getRes.json();
+    let guests = [];
+    if(data.record && data.record.guests) guests = data.record.guests;
+    else if(Array.isArray(data.record)) guests = data.record;
+    
+    guests.push(newGuest);
+    
+    await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Master-Key": MASTER_KEY
+      },
+      body: JSON.stringify({ guests })
+    });
+  } catch(err){
+    console.warn("Ошибка JSONBin:", err);
+  }
+
+  /* Резервная копия в localStorage */
+  const list = JSON.parse(localStorage.getItem("rsvp_liana_2026") || "[]");
+  list.push(newGuest);
+  localStorage.setItem("rsvp_liana_2026", JSON.stringify(list));
+
+  document.getElementById("tyWho").textContent = name + (att ? " — " + att : "");
+  document.getElementById("thankyou").classList.add("show");
+  if(navigator.vibrate) navigator.vibrate([100,50,100]);
+  document.getElementById("rsvpForm").reset();
+}
+document.getElementById("thankyou").addEventListener("click", () => {
+  document.getElementById("thankyou").classList.remove("show");
+});
+
+/* Музыка */
+const music = document.getElementById("bg-music");
+const musicBtn = document.getElementById("music-btn");
+
+function toggleMusic(){
+  if(music.paused){
+    music.play();
+    musicBtn.classList.add("playing");
+  } else {
+    music.pause();
+    musicBtn.classList.remove("playing");
+  }
+}
+musicBtn.addEventListener("click", toggleMusic);
+
+// Попытка автоплея: если браузер не дал сразу включить звук,
+// включаем при первом скролле или клике по экрану.
+document.body.addEventListener('click', function autoPlay() {
+  if(music.paused) {
+    music.play().catch(()=>{});
+    musicBtn.classList.add("playing");
+  }
+  document.body.removeEventListener('click', autoPlay);
+}, {once: true});
+document.body.addEventListener('touchstart', function autoPlay() {
+  if(music.paused) {
+    music.play().catch(()=>{});
+    musicBtn.classList.add("playing");
+  }
+  document.body.removeEventListener('touchstart', autoPlay);
+}, {once: true});
+</script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ответы гостей — Лиана</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: #0f0608;
+      color: #f0e8e0;
+      min-height: 100vh;
+    }
+
+    /* ADMIN PANEL */
+    #admin-panel { display:block; min-height:100vh; }
+
+    .adm-header { background:linear-gradient(135deg,#1a0508 0%,#2a0c12 100%); border-bottom:1px solid rgba(139,26,26,0.4); padding:22px 24px 18px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; position:sticky; top:0; z-index:100; box-shadow:0 4px 32px rgba(0,0,0,0.5); }
+    .adm-logo { display:flex; align-items:center; gap:14px; }
+    .adm-logo-heart { font-size:28px; color:#c8546a; animation:hb 2s ease-in-out infinite; }
+    @keyframes hb { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
+    .adm-logo-text { font-family:'Great Vibes',cursive; font-size:32px; color:#e8c4c4; line-height:1; }
+    .adm-logo-tag  { font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.2em; color:rgba(200,84,106,0.7); margin-top:2px; }
+    .logout-btn { font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.16em; color:rgba(240,232,224,0.5); background:none; border:1px solid rgba(240,232,224,0.2); border-radius:20px; padding:7px 16px; cursor:pointer; transition:all .25s; }
+    .logout-btn:hover { color:#f0e8e0; border-color:rgba(240,232,224,0.5); }
+    .refresh-btn { font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.16em; color:rgba(111,207,151,0.7); background:none; border:1px solid rgba(111,207,151,0.3); border-radius:20px; padding:7px 16px; cursor:pointer; transition:all .25s; }
+    .refresh-btn:hover { color:#6fcf97; border-color:#6fcf97; }
+    .status-bar { font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.1em; color:rgba(240,232,224,0.35); padding:6px 24px 0; }
+
+    /* Stats */
+    .adm-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:14px; padding:24px 20px 0; }
+    .stat-card { background:rgba(255,255,255,0.04); border:1px solid rgba(139,26,26,0.25); border-radius:14px; padding:18px 16px 16px; text-align:center; transition:border-color .3s; }
+    .stat-card:hover { border-color:rgba(200,84,106,0.5); }
+    .stat-n { font-family:'Cinzel',serif; font-size:38px; font-weight:600; line-height:1; margin-bottom:6px; }
+    .stat-n.total  { color:#e8c4c4; }
+    .stat-n.yes    { color:#6fcf97; }
+    .stat-n.no     { color:#e05070; }
+    .stat-n.couple { color:#c8a46a; }
+    .stat-l { font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.16em; color:rgba(240,232,224,0.45); }
+
+    /* Filters */
+    .adm-filters { display:flex; gap:10px; padding:20px 20px 0; flex-wrap:wrap; align-items:center; }
+    .filter-btn { font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.14em; padding:8px 18px; border-radius:30px; border:1px solid rgba(139,26,26,0.35); background:transparent; color:rgba(240,232,224,0.6); cursor:pointer; transition:all .25s; }
+    .filter-btn.active, .filter-btn:hover { background:linear-gradient(135deg,#8b1a1a,#c8546a); border-color:transparent; color:#fff; box-shadow:0 4px 16px rgba(139,26,26,0.4); }
+    .search-wrap { margin-left:auto; position:relative; }
+    .search-inp { background:rgba(255,255,255,0.05); border:1px solid rgba(139,26,26,0.3); border-radius:30px; padding:8px 16px 8px 36px; font-family:'Cormorant Garamond',serif; font-size:15px; color:#f0e8e0; outline:none; width:200px; transition:border-color .3s,width .3s; }
+    .search-inp:focus { border-color:#8b1a1a; width:240px; }
+    .search-ico { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:rgba(240,232,224,0.4); font-size:14px; }
+
+    /* Actions */
+    .adm-actions { display:flex; gap:10px; padding:14px 20px 0; flex-wrap:wrap; }
+    .export-btn { font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.14em; padding:8px 18px; border-radius:30px; border:1px solid rgba(200,164,106,0.4); background:transparent; color:#c8a46a; cursor:pointer; transition:all .25s; }
+    .export-btn:hover { background:rgba(200,164,106,0.12); border-color:#c8a46a; }
+    .clear-btn { font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.14em; padding:8px 18px; border-radius:30px; border:1px solid rgba(224,80,112,0.35); background:transparent; color:rgba(224,80,112,0.7); cursor:pointer; transition:all .25s; margin-left:auto; }
+    .clear-btn:hover { background:rgba(224,80,112,0.12); border-color:#e05070; color:#e05070; }
+
+    /* Divider */
+    .adm-divider { height:1px; background:linear-gradient(90deg,transparent,rgba(139,26,26,0.4),transparent); margin:18px 20px 0; }
+
+    /* Table */
+    .adm-table-wrap { padding:20px; overflow-x:auto; }
+    table { width:100%; border-collapse:collapse; min-width:560px; }
+    thead tr { border-bottom:1px solid rgba(139,26,26,0.4); }
+    th { font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.2em; color:rgba(200,84,106,0.8); text-align:left; padding:10px 14px; font-weight:500; white-space:nowrap; }
+    tbody tr { border-bottom:1px solid rgba(255,255,255,0.05); transition:background .2s; }
+    tbody tr:hover { background:rgba(255,255,255,0.04); }
+    td { font-family:'Cormorant Garamond',serif; font-size:16px; color:#e0d0d0; padding:13px 14px; vertical-align:middle; }
+    .td-num  { font-family:'Cinzel',serif; font-size:12px; color:rgba(200,84,106,0.6); text-align:center; }
+    .td-name { font-weight:500; color:#f0e8e0; }
+    .badge   { display:inline-block; padding:4px 12px; border-radius:20px; font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.1em; white-space:nowrap; }
+    .badge-yes    { background:rgba(111,207,151,0.15); color:#6fcf97; border:1px solid rgba(111,207,151,0.3); }
+    .badge-no     { background:rgba(224,80,112,0.15);  color:#e05070; border:1px solid rgba(224,80,112,0.3); }
+    .badge-couple { background:rgba(200,164,106,0.15); color:#c8a46a; border:1px solid rgba(200,164,106,0.3); }
+    .td-time { font-family:'Cinzel',serif; font-size:10px; color:rgba(240,232,224,0.35); letter-spacing:0.05em; white-space:nowrap; }
+    .td-wish { font-style:italic; color:rgba(240,232,224,0.55); font-size:15px; max-width:200px; }
+    .del-btn { background:none; border:none; cursor:pointer; color:rgba(224,80,112,0.4); font-size:16px; padding:4px 8px; border-radius:6px; transition:color .2s,background .2s; line-height:1; }
+    .del-btn:hover { color:#e05070; background:rgba(224,80,112,0.12); }
+
+    /* Empty state */
+    .empty-state { text-align:center; padding:80px 20px; }
+    .empty-ico { font-size:56px; margin-bottom:16px; opacity:0.35; }
+    .empty-txt { font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.18em; color:rgba(240,232,224,0.3); }
+
+    /* Confirm */
+    .confirm-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:999; align-items:center; justify-content:center; }
+    .confirm-overlay.show { display:flex; }
+    .confirm-box { background:#1a0810; border:1px solid rgba(224,80,112,0.4); border-radius:16px; padding:36px 32px 28px; text-align:center; max-width:320px; width:90%; }
+    .confirm-title { font-family:'Cinzel',serif; font-size:13px; letter-spacing:0.18em; color:#e05070; margin-bottom:10px; }
+    .confirm-txt   { font-size:15px; color:rgba(240,232,224,0.6); margin-bottom:26px; }
+    .confirm-btns  { display:flex; gap:12px; }
+    .confirm-yes { flex:1; padding:11px; background:linear-gradient(135deg,#8b1a1a,#e05070); border:none; border-radius:30px; font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.14em; color:#fff; cursor:pointer; }
+    .confirm-no  { flex:1; padding:11px; background:none; border:1px solid rgba(240,232,224,0.25); border-radius:30px; font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.14em; color:rgba(240,232,224,0.6); cursor:pointer; }
+  </style>
+</head>
+<body>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+
+  <div class="adm-header">
+    <div class="adm-logo">
+      <div class="adm-logo-heart">♥</div>
+      <div>
+        <div class="adm-logo-text">Лиана</div>
+        <div class="adm-logo-tag">КЫЗ ҰЗАТУ · 15.08.2026</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <button class="refresh-btn" onclick="loadData()">↻ ОБНОВИТЬ</button>
+    </div>
+  </div>
+  <div class="status-bar" id="status-bar">Загрузка данных…</div>
+
+  <div class="adm-stats" id="stats"></div>
+
+  <div class="adm-divider"></div>
+
+  <div class="adm-filters">
+    <button class="filter-btn active" onclick="setFilter('all',this)">ВСЕ</button>
+    <button class="filter-btn"       onclick="setFilter('yes',this)">ПРИДУТ</button>
+    <button class="filter-btn"       onclick="setFilter('couple',this)">С СУПРУГОЙ(-М)</button>
+    <button class="filter-btn"       onclick="setFilter('no',this)">НЕ СМОГУТ</button>
+    <div class="search-wrap">
+      <span class="search-ico">🔍</span>
+      <input class="search-inp" id="search-inp" type="text"
+             placeholder="Поиск по имени…"
+             oninput="renderTable()"/>
+    </div>
+  </div>
+
+  <div class="adm-actions">
+    <button class="export-btn" onclick="exportCSV()">⬇ СКАЧАТЬ CSV</button>
+    <button class="clear-btn"  onclick="askClear()">🗑 ОЧИСТИТЬ ВСЁ</button>
+  </div>
+
+  <div class="adm-divider"></div>
+
+  <div class="adm-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:36px;text-align:center">#</th>
+          <th>ИМЯ</th>
+          <th>СТАТУС</th>
+          <th>ПОЖЕЛАНИЕ</th>
+          <th>ВРЕМЯ</th>
+          <th style="width:40px"></th>
+        </tr>
+      </thead>
+      <tbody id="rsvp-tbody"></tbody>
+    </table>
+    <div class="empty-state" id="empty-state" style="display:none">
+      <div class="empty-ico">📋</div>
+      <div class="empty-txt">ОТВЕТОВ ПОКа НЕТ</div>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm dialog -->
+<div class="confirm-overlay" id="confirm-overlay">
+  <div class="confirm-box">
+    <div class="confirm-title" id="confirm-title">УДАЛИТЬ?</div>
+    <div class="confirm-txt"   id="confirm-txt">Это действие нельзя отменить.</div>
+    <div class="confirm-btns">
+      <button class="confirm-yes" id="confirm-yes-btn">ДА, УДАЛИТЬ</button>
+      <button class="confirm-no"  onclick="closeConfirm()">ОТМЕНА</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const RSVP_KEY   = "rsvp_liana_2026";
+
+  /* ═══════════════════════════════════════════════
+     Настройки JSONBin.io для базы данных
+     ═══════════════════════════════════════════════ */
+  const BIN_ID = "6a4511f4da38895dfe1bf656";
+  const MASTER_KEY = "$2a$10$1kCUWvxKVwqyiwrGBHokaeg0K8p.29e/pbbb8zAVCQlJXRrLklwfu";
+
+  let currentFilter = "all";
+  let allData = [];   // все записи из БД
+
+  /* ─ Загрузка данных из JSONBin ─ */
+  async function loadData(){
+    setStatus("⏳ Загружаю данные…");
+    try {
+      const res  = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+        headers: { "X-Master-Key": MASTER_KEY }
+      });
+      const json = await res.json();
+      
+      if(json.record && json.record.guests){
+        allData = json.record.guests;
+      } else if(Array.isArray(json.record)){
+        allData = json.record;
+      } else {
+        allData = [];
+      }
+      
+      setStatus("✓ Обновлено · " + new Date().toLocaleTimeString("ru-RU") + " · " + allData.length + " ответов");
+    } catch(err){
+      // Резерв: localStorage
+      allData = JSON.parse(localStorage.getItem(RSVP_KEY)||"[]");
+      setStatus("⚠️ Ошибка сети — показаны локальные данные");
+    }
+    renderAll();
+  }
+
+  function setStatus(txt){ document.getElementById("status-bar").textContent = txt; }
+
+  /* ─ Stats ─ */
+  function renderStats(){
+    const list = allData;
+    const yes    = list.filter(r=>r.att==="Приду").length;
+    const no     = list.filter(r=>r.att==="Не смогу").length;
+    const couple = list.filter(r=>r.att==="Приду с супругой(-м)").length;
+    document.getElementById("stats").innerHTML = `
+      <div class="stat-card"><div class="stat-n total">${list.length}</div><div class="stat-l">ВСЕГО ОТВЕТОВ</div></div>
+      <div class="stat-card"><div class="stat-n yes">${yes}</div><div class="stat-l">ПРИДУТ</div></div>
+      <div class="stat-card"><div class="stat-n couple">${couple}</div><div class="stat-l">С СУПРУГОЙ(-М)</div></div>
+      <div class="stat-card"><div class="stat-n no">${no}</div><div class="stat-l">НЕ СМОГУТ</div></div>`;
+  }
+
+  /* ─ Table ─ */
+  function setFilter(f, btn){
+    currentFilter = f;
+    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    renderTable();
+  }
+  function renderTable(){
+    const list  = allData;
+    const query = document.getElementById("search-inp").value.toLowerCase();
+    const filtered = list.filter((r)=>{
+      const mf = currentFilter==="all"||
+                 (currentFilter==="yes"    && r.att==="Приду")||
+                 (currentFilter==="no"     && r.att==="Не смогу")||
+                 (currentFilter==="couple" && r.att==="Приду с супругой(-м)");
+      const ms = !query || r.name.toLowerCase().includes(query)||(r.wish||"").toLowerCase().includes(query);
+      return mf && ms;
+    });
+    const tbody = document.getElementById("rsvp-tbody");
+    const empty = document.getElementById("empty-state");
+    if(!filtered.length){ tbody.innerHTML=""; empty.style.display="block"; return; }
+    empty.style.display="none";
+    tbody.innerHTML = filtered.map((r,idx)=>{
+      const badge =
+        r.att==="Приду"                ? '<span class="badge badge-yes">ПРИДУ</span>':
+        r.att==="Не смогу"             ? '<span class="badge badge-no">НЕ СМОГУ</span>':
+        r.att==="Приду с супругой(-м)" ? '<span class="badge badge-couple">С СУПРУГОЙ(-М)</span>':
+        `<span class="badge">${r.att||"—"}</span>`;
+      return `<tr>
+        <td class="td-num">${idx+1}</td>
+        <td class="td-name">${esc(r.name)}</td>
+        <td>${badge}</td>
+        <td class="td-wish">${r.wish?esc(r.wish):'<span style="opacity:.3">—</span>'}</td>
+        <td class="td-time">${r.time||"—"}</td>
+      </tr>`;
+    }).join("");
+  }
+  function renderAll(){ renderStats(); renderTable(); }
+
+  /* ─ Delete ─ */
+  function askClear(){
+    const n=allData.length; if(!n) return;
+    showConfirm("ОЧИСТИТЬ ВСЁ?",`Будет удалено ${n} записей навсегда.`, async ()=>{
+      setStatus("⏳ Удаляю…");
+      try {
+        await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json", "X-Master-Key": MASTER_KEY },
+          body: JSON.stringify({ guests: [] })
+        });
+        localStorage.setItem(RSVP_KEY, "[]");
+        allData = [];
+        renderAll();
+        setStatus("✓ Всё удалено");
+      } catch(err) {
+        setStatus("⚠️ Ошибка удаления");
+      }
+    });
+  }
+
+  /* ─ Confirm ─ */
+  function showConfirm(title,txt,action){
+    document.getElementById("confirm-title").textContent=title;
+    document.getElementById("confirm-txt").textContent=txt;
+    document.getElementById("confirm-overlay").classList.add("show");
+    document.getElementById("confirm-yes-btn").onclick=()=>{ action(); closeConfirm(); };
+  }
+  function closeConfirm(){ document.getElementById("confirm-overlay").classList.remove("show"); }
+
+  /* ─ Export CSV ─ */
+  function exportCSV(){
+    const list=allData;
+    if(!list.length){ alert("Нет данных"); return; }
+    const rows=[["#","Имя","Статус","Пожелание","Время"],...list.map((r,i)=>[i+1,r.name,r.att,r.wish||"",r.time||""])];
+    const csv=rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(",")).join("\n");
+    const a=document.createElement("a");
+    a.href=URL.createObjectURL(new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8"}));
+    a.download="rsvp_liana_2026.csv";
+    a.click();
+  }
+
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  /* Загрузка при открытии + авто-обновление каждые 60 сек */
+  loadData();
+  setInterval(loadData, 60000);
+</script>
+</body>
+</html>
