@@ -56,13 +56,13 @@
     /* мандалы по бокам */
     .mandala-l,.mandala-r{
       position:absolute;
-      width:180px;height:180px;
-      bottom:95px;
+      width:280px;height:280px;
+      bottom:45px;
       opacity:0.18;
       pointer-events:none;
     }
-    .mandala-l{left:-50px;}
-    .mandala-r{right:-50px;}
+    .mandala-l{left:-140px;}
+    .mandala-r{right:-140px;}
     @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
     .mandala-l svg{animation:spin 22s linear infinite;}
     .mandala-r svg{animation:spin 22s linear infinite reverse;}
@@ -450,52 +450,225 @@
 
   <!-- Мандала левая -->
   <div class="mandala-l">
-    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="60" cy="60" r="56" stroke="#8b1a1a" stroke-width="1.5" fill="none"/>
-      <circle cx="60" cy="60" r="46" stroke="#8b1a1a" stroke-width="1.2" fill="none"/>
-      <circle cx="60" cy="60" r="36" stroke="#8b1a1a" stroke-width="1" fill="none"/>
-      <circle cx="60" cy="60" r="26" stroke="#8b1a1a" stroke-width="0.8" fill="none"/>
-      <circle cx="60" cy="60" r="16" stroke="#8b1a1a" stroke-width="0.6" fill="none"/>
-      <circle cx="60" cy="60" r="6" fill="#8b1a1a" opacity="0.5"/>
-      <!-- лепестки -->
-      <ellipse cx="60" cy="38" rx="4" ry="9" fill="#8b1a1a" opacity="0.35"/>
-      <ellipse cx="60" cy="82" rx="4" ry="9" fill="#8b1a1a" opacity="0.35"/>
-      <ellipse cx="38" cy="60" rx="9" ry="4" fill="#8b1a1a" opacity="0.35"/>
-      <ellipse cx="82" cy="60" rx="9" ry="4" fill="#8b1a1a" opacity="0.35"/>
-      <!-- диагональные лепестки -->
-      <ellipse cx="46" cy="46" rx="4" ry="9" transform="rotate(45 46 46)" fill="#8b1a1a" opacity="0.25"/>
-      <ellipse cx="74" cy="46" rx="4" ry="9" transform="rotate(-45 74 46)" fill="#8b1a1a" opacity="0.25"/>
-      <ellipse cx="46" cy="74" rx="4" ry="9" transform="rotate(-45 46 74)" fill="#8b1a1a" opacity="0.25"/>
-      <ellipse cx="74" cy="74" rx="4" ry="9" transform="rotate(45 74 74)" fill="#8b1a1a" opacity="0.25"/>
-      <!-- точки на кольцах -->
-      <circle cx="60" cy="4" r="2.5" fill="#8b1a1a" opacity="0.4"/>
-      <circle cx="60" cy="116" r="2.5" fill="#8b1a1a" opacity="0.4"/>
-      <circle cx="4" cy="60" r="2.5" fill="#8b1a1a" opacity="0.4"/>
-      <circle cx="116" cy="60" r="2.5" fill="#8b1a1a" opacity="0.4"/>
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer rings -->
+      <circle cx="100" cy="100" r="96" stroke="#8b1a1a" stroke-width="1.2" fill="none" opacity="0.3"/>
+      <circle cx="100" cy="100" r="91" stroke="#8b1a1a" stroke-width="0.8" fill="none" opacity="0.2"/>
+      
+      <!-- 36 Outer ticks -->
+      <g stroke="#8b1a1a" stroke-width="1.2" opacity="0.35">
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(0 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(10 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(20 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(30 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(40 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(50 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(60 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(70 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(80 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(90 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(100 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(110 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(120 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(130 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(140 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(150 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(160 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(170 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(180 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(190 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(200 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(210 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(220 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(230 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(240 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(250 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(260 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(270 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(280 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(290 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(300 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(310 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(320 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(330 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(340 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(350 100 100)" />
+      </g>
+      
+      <circle cx="100" cy="100" r="86" stroke="#8b1a1a" stroke-width="0.8" fill="none" opacity="0.25"/>
+      
+      <!-- Dotted ring -->
+      <circle cx="100" cy="100" r="82" stroke="#8b1a1a" stroke-width="2.5" stroke-dasharray="0.1 5" stroke-linecap="round" fill="none" opacity="0.4"/>
+      
+      <circle cx="100" cy="100" r="78" stroke="#8b1a1a" stroke-width="0.8" fill="none" opacity="0.25"/>
+
+      <!-- 24 Overlapping circles for scallop pattern -->
+      <g stroke="#8b1a1a" stroke-width="0.8" fill="none" opacity="0.25">
+        <circle cx="100" cy="38" r="9" transform="rotate(0 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(15 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(30 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(45 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(60 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(75 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(90 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(105 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(120 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(135 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(150 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(165 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(180 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(195 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(210 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(225 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(240 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(255 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(270 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(285 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(300 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(315 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(330 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(345 100 100)" />
+      </g>
+
+      <circle cx="100" cy="100" r="54" stroke="#8b1a1a" stroke-width="1" fill="none" opacity="0.3"/>
+      
+      <!-- 18 Inner spokes -->
+      <g stroke="#8b1a1a" stroke-width="1" opacity="0.3">
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(0 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(20 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(40 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(60 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(80 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(100 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(120 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(140 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(160 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(180 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(200 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(220 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(240 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(260 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(280 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(300 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(320 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(340 100 100)" />
+      </g>
+
+      <circle cx="100" cy="100" r="24" stroke="#8b1a1a" stroke-width="1" fill="none" opacity="0.3"/>
+      <circle cx="100" cy="100" r="14" stroke="#8b1a1a" stroke-width="1.5" stroke-dasharray="1 3" fill="none" opacity="0.35"/>
+      <circle cx="100" cy="100" r="6" fill="#8b1a1a" opacity="0.45"/>
     </svg>
   </div>
 
   <!-- Мандала правая -->
   <div class="mandala-r">
-    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="60" cy="60" r="56" stroke="#8b1a1a" stroke-width="1.5" fill="none"/>
-      <circle cx="60" cy="60" r="46" stroke="#8b1a1a" stroke-width="1.2" fill="none"/>
-      <circle cx="60" cy="60" r="36" stroke="#8b1a1a" stroke-width="1" fill="none"/>
-      <circle cx="60" cy="60" r="26" stroke="#8b1a1a" stroke-width="0.8" fill="none"/>
-      <circle cx="60" cy="60" r="16" stroke="#8b1a1a" stroke-width="0.6" fill="none"/>
-      <circle cx="60" cy="60" r="6" fill="#8b1a1a" opacity="0.5"/>
-      <ellipse cx="60" cy="38" rx="4" ry="9" fill="#8b1a1a" opacity="0.35"/>
-      <ellipse cx="60" cy="82" rx="4" ry="9" fill="#8b1a1a" opacity="0.35"/>
-      <ellipse cx="38" cy="60" rx="9" ry="4" fill="#8b1a1a" opacity="0.35"/>
-      <ellipse cx="82" cy="60" rx="9" ry="4" fill="#8b1a1a" opacity="0.35"/>
-      <ellipse cx="46" cy="46" rx="4" ry="9" transform="rotate(45 46 46)" fill="#8b1a1a" opacity="0.25"/>
-      <ellipse cx="74" cy="46" rx="4" ry="9" transform="rotate(-45 74 46)" fill="#8b1a1a" opacity="0.25"/>
-      <ellipse cx="46" cy="74" rx="4" ry="9" transform="rotate(-45 46 74)" fill="#8b1a1a" opacity="0.25"/>
-      <ellipse cx="74" cy="74" rx="4" ry="9" transform="rotate(45 74 74)" fill="#8b1a1a" opacity="0.25"/>
-      <circle cx="60" cy="4" r="2.5" fill="#8b1a1a" opacity="0.4"/>
-      <circle cx="60" cy="116" r="2.5" fill="#8b1a1a" opacity="0.4"/>
-      <circle cx="4" cy="60" r="2.5" fill="#8b1a1a" opacity="0.4"/>
-      <circle cx="116" cy="60" r="2.5" fill="#8b1a1a" opacity="0.4"/>
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer rings -->
+      <circle cx="100" cy="100" r="96" stroke="#8b1a1a" stroke-width="1.2" fill="none" opacity="0.3"/>
+      <circle cx="100" cy="100" r="91" stroke="#8b1a1a" stroke-width="0.8" fill="none" opacity="0.2"/>
+      
+      <!-- 36 Outer ticks -->
+      <g stroke="#8b1a1a" stroke-width="1.2" opacity="0.35">
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(0 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(10 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(20 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(30 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(40 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(50 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(60 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(70 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(80 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(90 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(100 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(110 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(120 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(130 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(140 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(150 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(160 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(170 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(180 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(190 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(200 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(210 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(220 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(230 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(240 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(250 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(260 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(270 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(280 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(290 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(300 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(310 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(320 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(330 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(340 100 100)" />
+        <line x1="100" y1="5" x2="100" y2="11" transform="rotate(350 100 100)" />
+      </g>
+      
+      <circle cx="100" cy="100" r="86" stroke="#8b1a1a" stroke-width="0.8" fill="none" opacity="0.25"/>
+      
+      <!-- Dotted ring -->
+      <circle cx="100" cy="100" r="82" stroke="#8b1a1a" stroke-width="2.5" stroke-dasharray="0.1 5" stroke-linecap="round" fill="none" opacity="0.4"/>
+      
+      <circle cx="100" cy="100" r="78" stroke="#8b1a1a" stroke-width="0.8" fill="none" opacity="0.25"/>
+
+      <!-- 24 Overlapping circles for scallop pattern -->
+      <g stroke="#8b1a1a" stroke-width="0.8" fill="none" opacity="0.25">
+        <circle cx="100" cy="38" r="9" transform="rotate(0 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(15 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(30 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(45 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(60 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(75 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(90 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(105 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(120 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(135 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(150 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(165 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(180 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(195 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(210 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(225 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(240 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(255 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(270 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(285 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(300 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(315 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(330 100 100)" />
+        <circle cx="100" cy="38" r="9" transform="rotate(345 100 100)" />
+      </g>
+
+      <circle cx="100" cy="100" r="54" stroke="#8b1a1a" stroke-width="1" fill="none" opacity="0.3"/>
+      
+      <!-- 18 Inner spokes -->
+      <g stroke="#8b1a1a" stroke-width="1" opacity="0.3">
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(0 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(20 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(40 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(60 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(80 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(100 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(120 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(140 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(160 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(180 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(200 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(220 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(240 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(260 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(280 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(300 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(320 100 100)" />
+        <line x1="100" y1="54" x2="100" y2="76" transform="rotate(340 100 100)" />
+      </g>
+
+      <circle cx="100" cy="100" r="24" stroke="#8b1a1a" stroke-width="1" fill="none" opacity="0.3"/>
+      <circle cx="100" cy="100" r="14" stroke="#8b1a1a" stroke-width="1.5" stroke-dasharray="1 3" fill="none" opacity="0.35"/>
+      <circle cx="100" cy="100" r="6" fill="#8b1a1a" opacity="0.45"/>
     </svg>
   </div>
 
